@@ -109,25 +109,3 @@ netflix-clone/
 └── package.json              # Project dependencies
 ```
 
-### Firebase Functions
-
-**Signup**:  
-Creates a new user in Firebase Authentication and stores the user details in Firestore.
-
-```javascript
-const signup = async (name, email, password) => {
-  try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
-    await addDoc(collection(db, "users"), {
-      uid: user.uid,
-      name,
-      email,
-      authProvider: "local",
-    });
-    toast.success("Sign-up successful!");
-  } catch (error) {
-    toast.error(error.message);
-  }
-};
-```
